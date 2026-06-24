@@ -1,21 +1,69 @@
-MIT License
+#include <iostream>
+using namespace std;
 
-Copyright (c) 2026 ludovinadoceualexandreandre-eng
+struct Produto{
+    string nome;
+    float preco;
+    int qtd;
+};
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+int main() {
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+    Produto p[10];
+    int total = 0, op, i, num, venda;
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+    do{
+        cout << "\n=== DOCES E SALGADOS ===\n";
+        cout << "1. Cadastrar\n";
+        cout << "2. Listar\n";
+        cout << "3. Vender\n";
+        cout << "4. Sair\n";
+        cout << "Opcao: ";
+        cin >> op;
+
+        if(op == 1){
+
+            cout << "Nome: ";
+            cin >> p[total].nome;
+
+            cout << "Preco: ";
+            cin >> p[total].preco;
+
+            cout << "Quantidade: ";
+            cin >> p[total].qtd;
+
+            total++;
+
+        }else if(op == 2){
+
+            cout << "\nPRODUTOS\n";
+
+            for(i = 0; i < total; i++){
+                cout << i + 1 << " - "
+                     << p[i].nome << " | "
+                     << p[i].preco << " MT | "
+                     << p[i].qtd << " unidades\n";
+            }
+
+        }else if(op == 3){
+
+            cout << "Numero do produto: ";
+            cin >> num;
+
+            cout << "Quantidade vendida: ";
+            cin >> venda;
+
+            if(venda <= p[num-1].qtd){
+                p[num-1].qtd -= venda;
+                cout << "Venda realizada!\n";
+            }else{
+                cout << "Stock insuficiente!\n";
+            }
+        }
+
+    }while(op != 4);
+
+    cout << "Programa encerrado!\n";
+
+    return 0;
+}
